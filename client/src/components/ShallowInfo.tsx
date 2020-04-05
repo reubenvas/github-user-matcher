@@ -1,14 +1,18 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 type propTypes = {
     overline: string;
     heading: string;
     body: string;
-}
+};
 
 const useStyles = makeStyles(() => ({
+    container: {
+        height: 187,
+    },
     overline: {
         display: 'block',
         textAlign: 'center',
@@ -44,34 +48,33 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const ShallowInfo = ({ overline, heading, body }: propTypes) => {
+const ShallowInfo = ({ overline, heading, body }: propTypes): React.ReactElement => {
     const styles = useStyles();
-    console.log(styles.overline);
 
     return (
-        <>
+        <Grid className={styles.container}>
             {overline && (
                 <Typography
-                    component={'span'}
+                    component="span"
                     className={styles.overline}
                 >
                     {overline}
                 </Typography>
             )}
             <Typography
-                component={'h4'}
+                component="h4"
                 className={styles.heading}
             >
                 {heading}
             </Typography>
-            <div className={styles.underlineHeading}></div>
+            <div className={styles.underlineHeading} />
             <Typography
                 className={styles.body}
             >
                 {body}
             </Typography>
-        </>
+        </Grid>
     );
-}
+};
 
 export default ShallowInfo;

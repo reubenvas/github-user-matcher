@@ -1,16 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CardInterface from './components/CardInterface';
 
-function App() {
-  return (
+const App = (): React.ReactElement => (
     <div className="App">
-
-      <CardInterface />
-
+        <CardInterface />
     </div>
-  );
-}
+);
 
 export default App;
