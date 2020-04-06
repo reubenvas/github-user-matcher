@@ -2,8 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import UserCard from './UserCard';
 import SimpleCard from './SimpleCard';
-import { getRandomUser } from '../api';
-import useStores from '../hooks/useStores';
+import { getRandomUser } from '../../api';
+import useStores from '../../hooks/useStores';
 
 const CardInterface = observer((): React.ReactElement => {
     const { user: { mainUser, setCurrentMatchUser, currentMatchUser } } = useStores();

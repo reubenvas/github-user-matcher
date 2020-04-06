@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { generateRandomNum } from '../utils';
+import { generateRandomNum } from '../../utils';
 
 
 const useStyles = (index: number): () => { [key: string]: string } => (

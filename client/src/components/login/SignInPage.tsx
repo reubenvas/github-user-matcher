@@ -6,8 +6,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import { observer } from 'mobx-react-lite';
-import { postLogin } from '../api';
-import useStores from '../hooks/useStores';
+import { postLogin } from '../../api';
+import useStores from '../../hooks/useStores';
 
 const useStyles = makeStyles((theme: Theme) => ({
     mainContainer: {

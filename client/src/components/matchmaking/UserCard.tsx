@@ -9,8 +9,8 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 import SimpleCard from './SimpleCard';
 import OpeningView from './OpeningView';
 import MoreInfoView from './MoreInfoView';
-import { postInteraction, getRandomUser } from '../api';
-import useStores from '../hooks/useStores';
+import { postInteraction, getRandomUser } from '../../api';
+import useStores from '../../hooks/useStores';
 
 
 const useStyles = makeStyles((theme: Theme) => ({

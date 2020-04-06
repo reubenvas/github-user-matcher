@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import './App.css';
-import CardInterface from './components/CardInterface';
-import SignInPage from './components/SignInPage';
+import CardInterface from './components/matchmaking/CardInterface';
+import SignInPage from './components/login/SignInPage';
 import useStores from './hooks/useStores';
 
 const App = observer((): React.ReactElement => {
