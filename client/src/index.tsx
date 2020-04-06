@@ -4,11 +4,17 @@ import 'typeface-roboto';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { StoreProvider } from './StoreContext';
+import UserStore from './stores/UserStore';
+import MatchStore from './stores/MatchStore';
+
+const user = new UserStore();
+const matches = new MatchStore();
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StoreProvider value={{ user, matches }}>
         <App />
-    </React.StrictMode>,
+    </StoreProvider>,
     document.getElementById('root'),
 );
 

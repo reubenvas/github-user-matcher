@@ -78,12 +78,33 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type propTypes = {
     toggleViews: () => void;
+    imgLink: string;
+    fullName: string;
+    username: string;
+    bio: string;
+    githubLink: string;
+    location: string;
+    publicRepos: number;
+    publicReposLink: string;
+    company: string;
+    blog: string;
+    lastUpdated: string;
 };
 
-const MoreInfoView = ({ toggleViews }: propTypes): React.ReactElement => {
+
+const MoreInfoView = (
+    {
+        toggleViews, imgLink, fullName, username, githubLink,
+        location, publicRepos, publicReposLink, company, blog, lastUpdated,
+    }: propTypes,
+): React.ReactElement => {
     const styles = useStyles();
 
+    const firstName = fullName.split(' ')[0];
+
     const redirectToUrl = (url: string) => (): Window | null => window.open(url);
+
+    // HIDE THE ICONS THAT CONTAIN NULL
 
     return (
         <>
@@ -96,20 +117,20 @@ const MoreInfoView = ({ toggleViews }: propTypes): React.ReactElement => {
                 <Grid item container className={styles.topNameContainer}>
                     <CardMedia
                         className={styles.media}
-                        image="https://avatars0.githubusercontent.com/u/46671298?v=4"
+                        image={imgLink}
                         title="User profile picture"
                     />
                     <Typography
                         component="span"
                         className={styles.heading}
                     >
-                        Inner Varnika
+                        {fullName}
                     </Typography>
                 </Grid>
                 <Grid item container className={styles.infoTextContainer}>
                     <Grid item container direction="column" className={styles.mainInfoContainer}>
-                        <Grid item container alignItems="center" onClick={redirectToUrl('https://github.com/justin')} className={styles.infoTextRow}>
-                            <Tooltip title="Visit Justin's github profile" aria-label="Visit Justin's github profile">
+                        <Grid item container alignItems="center" onClick={redirectToUrl(githubLink)} className={styles.infoTextRow}>
+                            <Tooltip title={`Visit ${firstName}'s github profile`} aria-label={`Visit ${firstName}'s github profile`}>
                                 <ButtonBase>
                                     <GitHubIcon className={styles.infoIcon} />
                                     {' '}
@@ -118,55 +139,61 @@ const MoreInfoView = ({ toggleViews }: propTypes): React.ReactElement => {
                                         component="span"
                                         className={styles.infoText}
                                     >
-                                        Kesha
+                                        {username}
                                     </Typography>
                                 </ButtonBase>
                             </Tooltip>
                         </Grid>
-                        <Grid item container alignItems="center" className={styles.infoTextRow}>
-                            <RoomIcon className={styles.infoIcon} />
-                            <Typography
-                                component="span"
-                                className={styles.infoText}
-                            >
-                                Uppsala
-                            </Typography>
-                        </Grid>
-                        <Grid item container alignItems="center" onClick={redirectToUrl('https://github.com/justin?tab=repositories')} className={styles.infoTextRow}>
-                            <Tooltip title="See Justin's public repos" aria-label="See Justin's public repos">
+                        {location && (
+                            <Grid item container alignItems="center" className={styles.infoTextRow}>
+                                <RoomIcon className={styles.infoIcon} />
+                                <Typography
+                                    component="span"
+                                    className={styles.infoText}
+                                >
+                                    {location}
+                                </Typography>
+                            </Grid>
+                        )}
+                        <Grid item container alignItems="center" onClick={redirectToUrl(publicReposLink)} className={styles.infoTextRow}>
+                            <Tooltip title={`See ${firstName}'s public repos`} aria-label={`See ${firstName}'s public repos`}>
                                 <ButtonBase>
                                     <WorkIcon className={styles.infoIcon} />
                                     <Typography
                                         component="span"
                                         className={styles.infoText}
                                     >
-                                        42 public repos
+                                        {`${publicRepos} public repos`}
                                     </Typography>
                                 </ButtonBase>
                             </Tooltip>
                         </Grid>
-                        <Grid item container alignItems="center" className={styles.infoTextRow}>
-                            <BusinessIcon className={styles.infoIcon} />
-                            <Typography
-                                component="span"
-                                className={styles.infoText}
-                            >
-                                GalacticCoders
-                            </Typography>
-                        </Grid>
-                        <Grid item container alignItems="center" onClick={redirectToUrl('https://google.com')} className={styles.infoTextRow}>
-                            <Tooltip title="Visit Justin's blog" aria-label="Visit Justin's blog">
-                                <ButtonBase>
-                                    <LanguageIcon className={styles.infoIcon} />
-                                    <Typography
-                                        component="span"
-                                        className={styles.infoText}
-                                    >
-                                        https://google.com
-                                    </Typography>
-                                </ButtonBase>
-                            </Tooltip>
-                        </Grid>
+                        {company && (
+                            <Grid item container alignItems="center" className={styles.infoTextRow}>
+                                <BusinessIcon className={styles.infoIcon} />
+                                <Typography
+                                    component="span"
+                                    className={styles.infoText}
+                                >
+                                    {company}
+                                </Typography>
+                            </Grid>
+                        )}
+                        {blog && (
+                            <Grid item container alignItems="center" onClick={redirectToUrl(blog)} className={styles.infoTextRow}>
+                                <Tooltip title={`Visit ${firstName}'s blog`} aria-label={`Visit ${firstName}'s blog`}>
+                                    <ButtonBase>
+                                        <LanguageIcon className={styles.infoIcon} />
+                                        <Typography
+                                            component="span"
+                                            className={styles.infoText}
+                                        >
+                                            {blog}
+                                        </Typography>
+                                    </ButtonBase>
+                                </Tooltip>
+                            </Grid>
+                        )}
                     </Grid>
                     <Grid item container alignItems="center" className={styles.infoTextRow}>
                         <Typography
@@ -179,7 +206,7 @@ const MoreInfoView = ({ toggleViews }: propTypes): React.ReactElement => {
                             component="span"
                             className={`${styles.infoText} ${styles.smallerText}`}
                         >
-                            {(new Date('2020-03-27T21:19:34Z')).toLocaleDateString()}
+                            {(new Date(lastUpdated)).toLocaleDateString()}
                         </Typography>
                     </Grid>
                 </Grid>

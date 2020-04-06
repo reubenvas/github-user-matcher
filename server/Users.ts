@@ -122,7 +122,7 @@ export default class Users {
                     }
                 }
             } catch (err2) {
-                console.error(err2);
+                console.error(err2); // eslint-disable-line no-console
                 return null;
             }
         }

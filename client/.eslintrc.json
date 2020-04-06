@@ -4,17 +4,22 @@
     },
     "extends": [
         "react-app",
-        "airbnb-typescript"
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "project": "./tsconfig.json"
     },
+    "parser": "@typescript-eslint/parser",
     "root": true,
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "plugins": [],
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
         "import/no-cycle": "off",
         "import/no-extraneous-dependencies": [
@@ -69,21 +74,5 @@
                 ]
             }
         }
-    },
-    "overrides": [
-        {
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ],
-            "plugins": [
-                "@typescript-eslint"
-            ],
-            "parser": "@typescript-eslint/parser",
-            "extends": [
-                "plugin:@typescript-eslint/eslint-recommended",
-                "plugin:@typescript-eslint/recommended"
-            ]
-        }
-    ]
+    }
 }

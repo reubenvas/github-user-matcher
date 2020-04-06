@@ -33,15 +33,16 @@ const useStyles = (index: number): () => { [key: string]: string } => (
 type propTypes = {
     index: number;
     children?: React.ReactChild;
+    maxWidth?: boolean;
 };
 
-const UserCard = ({ index, children }: propTypes): React.ReactElement => {
+const UserCard = ({ index, children, maxWidth }: propTypes): React.ReactElement => {
     const styles = useStyles(index)();
 
     return (
-        <Card className={styles.card} raised={index === 0}>
+        <Card className={styles.card} style={{ maxWidth: maxWidth ? 350 : 260 }} raised={index === 0}>
             {children}
-        </Card>
+        </Card >
     );
 };
 

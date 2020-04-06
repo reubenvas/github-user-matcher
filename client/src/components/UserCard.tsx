@@ -9,6 +9,8 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 import SimpleCard from './SimpleCard';
 import OpeningView from './OpeningView';
 import MoreInfoView from './MoreInfoView';
+import { postInteraction, getRandomUser } from '../api';
+import useStores from '../hooks/useStores';
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -45,30 +47,88 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type propTypes = {
     index?: number;
+    id: number;
+    username: string;
+    fullName: string;
+    bio: string;
+    imgLink: string;
+    githubLink: string;
+    location: string;
+    publicRepos: number;
+    publicReposLink: string;
+    company: string;
+    blog: string;
+    lastUpdated: string;
 };
 
-const UserCard = ({ index }: propTypes): React.ReactElement => {
+const UserCard = (
+    {
+        index, id, username, fullName, bio, imgLink, githubLink, location,
+        publicRepos, publicReposLink, company, blog, lastUpdated,
+    }: propTypes,
+): React.ReactElement => {
     const [isOpeningView, setIsOpeningView] = React.useState<boolean>(true);
     const styles = useStyles();
+    const { user: { mainUser, setCurrentMatchUser } } = useStores();
 
     const toggleViews = (): void => setIsOpeningView(!isOpeningView);
 
+    const registerInteraction = (interaction: 'like' | 'dislike') => async (): Promise<void> => {
+        if (mainUser === null) return;
+        postInteraction(mainUser.id, id, interaction);
+        const newCurrentMatchUser = await getRandomUser(mainUser.id);
+        setCurrentMatchUser(newCurrentMatchUser);
+    };
+
     return (
-        <SimpleCard index={2}>
+        <SimpleCard index={2} maxWidth={!isOpeningView}>
             <>
                 {
                     isOpeningView
-                        ? <OpeningView toggleViews={toggleViews} />
-                        : <MoreInfoView toggleViews={toggleViews} />
+                        ? (
+                            <OpeningView
+                                toggleViews={toggleViews}
+                                imgLink={imgLink}
+                                fullName={fullName}
+                                username={username}
+                                bio={bio}
+                            />
+                        )
+                        : (
+                            <MoreInfoView
+                                toggleViews={toggleViews}
+                                imgLink={imgLink}
+                                fullName={fullName}
+                                username={username}
+                                bio={bio}
+                                githubLink={githubLink}
+                                location={location}
+                                publicRepos={publicRepos}
+                                publicReposLink={publicReposLink}
+                                company={company}
+                                blog={blog}
+                                lastUpdated={lastUpdated}
+                            />
+                        )
                 }
                 <CardActions className={styles.flexButtonContainer}>
                     <Tooltip title="No thx." aria-label="No thx.">
-                        <Fab className={styles.lightGrey}>
+                        <Fab
+                            onClick={registerInteraction('dislike')}
+                            className={styles.lightGrey}
+                            disableRipple
+                            disableTouchRipple
+                        >
                             <RemoveIcon />
                         </Fab>
                     </Tooltip>
                     <Tooltip title="Yeah!" aria-label="Yeah!">
-                        <Fab className={styles.darkGrey}>
+                        <Fab
+                            onClick={registerInteraction('like')}
+                            className={styles.darkGrey}
+                            disableRipple
+                            disableTouchRipple
+                        >
                             <AddIcon />
                         </Fab>
                     </Tooltip>

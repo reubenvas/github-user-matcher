@@ -13,25 +13,35 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+// toggleViews = { toggleViews }
+// imgLink = { imgLink }
+// fullName = { fullName }
+// username = { username }
+// bio = { bio }
+
 type propTypes = {
     toggleViews: () => void;
+    imgLink: string;
+    fullName: string;
+    username: string;
+    bio: string;
 };
 
-const OpeningView = ({ toggleViews }: propTypes): React.ReactElement => {
+const OpeningView = ({ toggleViews, imgLink, fullName, username, bio }: propTypes): React.ReactElement => {
     const styles = useStyles();
     return (
         <>
             <CardActionArea onClick={toggleViews}>
                 <CardMedia
                     className={styles.media}
-                    image="https://avatars0.githubusercontent.com/u/46671298?v=4"
+                    image={imgLink}
                     title="User profile picture"
                 />
                 <CardContent>
                     <ShallowInfo
-                        overline="Kesha" // this will come from the GET request
-                        heading="Inner Varnika"
-                        body="That year, collection of songs, review melodies, memories full, this is a long and warm journey"
+                        overline={username} // this will come from the GET request
+                        heading={fullName}
+                        body={bio}
                     />
                 </CardContent>
             </CardActionArea>

@@ -1,11 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import Users from './Users';
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const users = new Users();
 
@@ -48,10 +50,11 @@ app.post('/users/interact', (req, res) => {
     }
     try {
         users.registerUserInteraction(Number(senderId), Number(receiverId), interaction);
-        res.status(201).send('ok');
+        res.status(201).json('ok');
     } catch (err) {
-        res.status(404).send(err.toString());
+        res.status(404).json(err.toString());
     }
+    console.log('INTERACTION GOTTEN');
 });
 
 app.listen(PORT, () => {
