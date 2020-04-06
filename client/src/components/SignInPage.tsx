@@ -5,9 +5,9 @@ import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-import { postLogin, getRandomUser, postInteraction } from '../api';
-import useStores from '../hooks/useStores';
 import { observer } from 'mobx-react-lite';
+import { postLogin } from '../api';
+import useStores from '../hooks/useStores';
 
 const useStyles = makeStyles((theme: Theme) => ({
     mainContainer: {
@@ -35,20 +35,12 @@ const SignInPage = observer(() => {
         setUsername(e.currentTarget.value);
     };
 
-    const submit = async (e: React.FormEvent) => {
+    const submit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
-        // POST LOGIN HERE
-
-        console.log(mainUser);
-        console.log(loading);
         setLoading(true);
         const user = await postLogin(username);
         setMainUser(user);
         if (mainUser) setLoading(false);
-
-        // console.log(await getRandomUser(46671298));
-        // postInteraction(46671298, 8145553, 'dislike');
-        // console.log(username);
     };
 
     return (

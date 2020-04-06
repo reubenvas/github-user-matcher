@@ -27,7 +27,9 @@ type propTypes = {
     bio: string;
 };
 
-const OpeningView = ({ toggleViews, imgLink, fullName, username, bio }: propTypes): React.ReactElement => {
+const OpeningView = ({
+    toggleViews, imgLink, fullName, username, bio,
+}: propTypes): React.ReactElement => {
     const styles = useStyles();
     return (
         <>

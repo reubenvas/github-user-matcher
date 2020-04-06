@@ -105,8 +105,6 @@ export default class Users {
                     ),
                 ),
             );
-            console.log('USERS FROM THIS REQ:', validUsers);
-            console.log('USERS SAVED FROM BEFORE:', this.stackedUsers);
             this.storeUserToStack(validUsers);
             for (let i = 0; i <= validUsers.length; i += 1) {
                 if (this.hasNotInteracted(senderUserId, validUsers[i].id)) {

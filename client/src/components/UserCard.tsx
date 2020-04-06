@@ -63,7 +63,7 @@ type propTypes = {
 
 const UserCard = (
     {
-        index, id, username, fullName, bio, imgLink, githubLink, location,
+        id, username, fullName, bio, imgLink, githubLink, location,
         publicRepos, publicReposLink, company, blog, lastUpdated,
     }: propTypes,
 ): React.ReactElement => {

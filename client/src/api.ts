@@ -25,5 +25,6 @@ export const postInteraction = (senderId: number, receiverId: number, interactio
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ senderId, receiverId, interaction }),
-    }).then((res) => res.json()).then(console.log).catch(console.error); // eslint-disable-line no-console
+    }).then((res) => res.json())
+        .then(console.log).catch(console.error); // eslint-disable-line no-console
 };

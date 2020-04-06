@@ -40,9 +40,13 @@ const UserCard = ({ index, children, maxWidth }: propTypes): React.ReactElement 
     const styles = useStyles(index)();
 
     return (
-        <Card className={styles.card} style={{ maxWidth: maxWidth ? 350 : 260 }} raised={index === 0}>
+        <Card
+            className={styles.card}
+            style={{ maxWidth: maxWidth ? 420 : 260 }}
+            raised={index === 0}
+        >
             {children}
-        </Card >
+        </Card>
     );
 };
 

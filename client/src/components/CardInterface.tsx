@@ -8,17 +8,17 @@ import useStores from '../hooks/useStores';
 const CardInterface = observer((): React.ReactElement => {
     const { user: { mainUser, setCurrentMatchUser, currentMatchUser } } = useStores();
 
-    const updateActiveUser = () => {
-        if (mainUser === null) {
-            return;
-        }
-
-        getRandomUser(mainUser.id).then((randomUser) => setCurrentMatchUser(randomUser));
-    };
 
     React.useEffect(() => {
+        const updateActiveUser = (): void => {
+            if (mainUser === null) {
+                return;
+            }
+
+            getRandomUser(mainUser.id).then((randomUser) => setCurrentMatchUser(randomUser));
+        };
         updateActiveUser();
-    }, []);
+    }, [mainUser, setCurrentMatchUser]);
 
     return (
         <>

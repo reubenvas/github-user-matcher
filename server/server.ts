@@ -54,7 +54,6 @@ app.post('/users/interact', (req, res) => {
     } catch (err) {
         res.status(404).json(err.toString());
     }
-    console.log('INTERACTION GOTTEN');
 });
 
 app.listen(PORT, () => {
