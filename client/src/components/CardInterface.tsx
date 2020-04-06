@@ -22,13 +22,11 @@ const CardInterface = observer((): React.ReactElement => {
 
     return (
         <>
-            <span>{currentMatchUser !== null && currentMatchUser.login}</span>
             <SimpleCard index={0} />
             <SimpleCard index={1} />
             {currentMatchUser !== null
                 && (
                     <UserCard
-                        // Hide the the icons
                         id={currentMatchUser?.id}
                         username={currentMatchUser?.login}
                         fullName={currentMatchUser?.name}

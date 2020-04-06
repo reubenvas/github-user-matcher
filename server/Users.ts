@@ -82,7 +82,6 @@ export default class Users {
     }
 
     private hasNotInteracted = (userId: number, interactedUserId: number): boolean => (
-        // DON'T FORGET TO CALL initUser BEFORE THIS FUNC
         !this.userLikeStatistics[userId].total.includes(interactedUserId)
     );
 
@@ -114,7 +113,6 @@ export default class Users {
         } catch (err1) {
             try {
                 for (let i = 0; i < this.stackedUsers.length; i += 1) {
-                    // REMEMBER TO REGISTER LIKE OR DISLIKE!!!
                     if (this.hasNotInteracted(senderUserId, this.stackedUsers[i].id)) {
                         return this.stackedUsers[i];
                     }

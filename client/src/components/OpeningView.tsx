@@ -13,12 +13,6 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-// toggleViews = { toggleViews }
-// imgLink = { imgLink }
-// fullName = { fullName }
-// username = { username }
-// bio = { bio }
-
 type propTypes = {
     toggleViews: () => void;
     imgLink: string;
@@ -41,7 +35,7 @@ const OpeningView = ({
                 />
                 <CardContent>
                     <ShallowInfo
-                        overline={username} // this will come from the GET request
+                        overline={username} 
                         heading={fullName}
                         body={bio}
                     />

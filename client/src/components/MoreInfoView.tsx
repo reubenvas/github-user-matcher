@@ -71,10 +71,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-// type propTypes = {
-//     infoText: string;
-//     heading: string;
-// }
 
 type propTypes = {
     toggleViews: () => void;
@@ -103,8 +99,6 @@ const MoreInfoView = (
     const firstName = fullName.split(' ')[0];
 
     const redirectToUrl = (url: string) => (): Window | null => window.open(url);
-
-    // HIDE THE ICONS THAT CONTAIN NULL
 
     return (
         <>
